@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "projetocapella": {
+      "hosting": {
+        "app": [
+          "projetocapella"
+        ]
+      }
+    }
+  }
+}

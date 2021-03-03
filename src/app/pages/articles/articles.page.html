@@ -10,9 +10,27 @@
 
 <ion-content class="ion-padding">
 
-    <h2>Artigos Recentes</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam voluptates aut cumque animi laborum? Tenetur, voluptatum. Voluptatibus, repellendus tempore? Obcaecati voluptatum fuga dicta tenetur blanditiis fugiat voluptatem consequatur molestias
-        quisquam?
-    </p>
+
+
+    <div *ngFor="let art of item | async">
+    <ion-card class="ion-no-margin ion-margin-bottom" routerLink="/view/{{ art.id }}">
+        <img src="{{ art.img }}" alt="{{ art.title }}" title="{{ art.title }}" />
+        <ion-card-header>
+          <ion-card-subtitle>Destination</ion-card-subtitle>
+          <ion-card-title>{{ art.title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+         {{ art.intro }}
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+
+
+    <ul>
+        <li *ngFor="let art of item | async">
+          {{ art.title }}
+        </li>
+      </ul>
 
 </ion-content>
