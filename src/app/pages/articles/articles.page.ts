@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-//passo 1 - importa dependências - injetar lá em baixo no método construtor
-import { AngularFirestore } from '@angular/fire/firestore';
-import { $ } from 'protractor';
+// 1) Importa dependências
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,21 +11,41 @@ import { Observable } from 'rxjs';
 })
 export class ArticlesPage implements OnInit {
 
-
-  // 3 atributos
+  // 3) Atributos
   item: Observable<any[]>;
 
+  // 3.1) Atributos
+  private itemsCollection: AngularFirestoreCollection<any>;
 
-  // 2 injetar dependências
-  constructor(firestore: AngularFirestore) {
+  constructor(
 
-    // 4 ler os dados do banco de dados
-    this.item = firestore.collection('articles').valueChanges({ idField: "id" });
+    // 2) Injeta dependências
+    firestore: AngularFirestore
+  ) {
+
+    // 4) Ler dados do banco de dados
+    // this.item = firestore.collection('articles').valueChanges({ idField: 'id' });
+
+    // 4.1) Ler dados do banco de dados com filtro
+
+    this.itemsCollection  = firestore.collection<any>(
+      'articles', // Coleção a ser consultada
+      ref => ref // Aplica filtros
+        .where('status', '==', 'ativo') // Somente com 'status'='ativo'
+        .orderBy('date', 'desc') // Ordena por 'date' na ordem decrescente
+
+      /*
+        ATENÇÃO!
+          Será necessário gerar um índice no Firestore para que esta query funcione.
+          O link para gerar o índice aparece no console.
+          Logue-se no Firebase.com e clique no link do console.
+      */
+    );
+
+    // 5. Obtém os ítens da coleção e também o 'id' de cada item.
+    this.item = this.itemsCollection.valueChanges({ idField: 'id' });
+
   }
 
-  ngOnInit() {
-  }
-
-
-
+  ngOnInit() { }
 }
