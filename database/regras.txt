@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+â€¢â€¢â€¢  
+    
+    // Contatos
+    match /contacts/{messages} {
+      allow write: if true;
+      allow read: if false;
+    }
+    
+    // Quaisquer outros documentos estÃ£o bloqueados
+    match /{document} {
+      allow read, write: if false;
+    }
+  }
+}
