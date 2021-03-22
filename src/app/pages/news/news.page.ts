@@ -16,13 +16,13 @@ export class NewsPage implements OnInit {
   private apiKey = '9e3095af5b5b4cbe90a32b48f480f973';
 
   // Palavra chave das buscas
-  private apiQuery = 'música';
-
+  private apiQuery = 'furão';
+  
   // Quantas notícias serão exibidas
-  private apiItens = 7;
+  private apiItens = 10;
 
   // Endereço do request da API
-  private apiURL = `https://newsapi.org/v2/everything?apiKey=${this.apiKey}&source=google-news-br&language=pt&q=${this.apiQuery}`;
+  private apiURL = `https://newsapi.org/v2/everything?apiKey=${this.apiKey}&language=pt&q=${this.apiQuery}`;
 
   // Armazena as notícias para a 'view'
   public newsList: any;
@@ -45,10 +45,9 @@ export class NewsPage implements OnInit {
     )
   }
 
-  // 6) Acessa site da nóticia
+  // 6) Acessa site da notícia
   readNews(link: string) {
     window.open(link);
     return false;
   }
-
 }

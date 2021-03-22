@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,  
     FormsModule,
     IonicModule,
     ContactsPageRoutingModule,

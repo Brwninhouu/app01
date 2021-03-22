@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "app01",
+  "appId": "net.luferat.fuinhas",
+  "appName": "Fuinhas",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

@@ -9,6 +9,7 @@ const routes: Routes = [
     redirectTo: 'articles',
     pathMatch: 'full'
   },
+
   // Rota para a página 'Artigos'
   {
     path: 'articles',
@@ -30,9 +31,9 @@ const routes: Routes = [
     path: 'view/:id',
     loadChildren: () => import('./pages/view/view.module').then( m => m.ViewPageModule)
   },
-  
-  //pagina de erro 404
-//**tem que ser sempre a última rota
+
+  // Página de erro 404
+  // '**' TEM QUE SER SEMPRE A ÚLTIMA ROTA
   {
     path: '**',
     loadChildren: () => import('./pages/e404/e404.module').then( m => m.E404PageModule)

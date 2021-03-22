@@ -4,16 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { NewsPageRoutingModule } from './news-routing.module';
 import { NewsPage } from './news.page';
-// importa http client do angular
+
+// 1) Importa Http Client do Angular
 import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     NewsPageRoutingModule,
-    //declara módulo declarado
-    HttpClientModule 
+
+    // 2) Declara módulo Http Client
+    HttpClientModule
   ],
   declarations: [NewsPage]
 })

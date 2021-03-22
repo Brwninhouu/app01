@@ -1,7 +1,7 @@
 {
-    "name": "Brwninhouu",
-    "integrations": {
-        "capacitor": {}
-    },
-    "type": "angular"
+  "name": "Fuinhas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
 }

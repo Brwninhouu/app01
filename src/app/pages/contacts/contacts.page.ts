@@ -9,10 +9,9 @@ import {
 } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DatePipe } from '@angular/common';
-<<<<<<< HEAD
+
+// Alert Controller
 import { AlertController } from '@ionic/angular';
-=======
->>>>>>> b7242c2230741c2447c287f2f8b068a90eab6910
 
 // 6) Não permite somente espaços nos campos
 export function removeSpaces(control: AbstractControl) {
@@ -35,141 +34,110 @@ export class ContactsPage implements OnInit {
   constructor(
     // 2) Injeta dependências
     public form: FormBuilder,
-<<<<<<< HEAD
     public firestore: AngularFirestore,
-    public alert: AlertController
 
+    // Alert Controller
+    public alert: AlertController
   ) { }
-=======
-    public firestore: AngularFirestore
-  ) {}
->>>>>>> b7242c2230741c2447c287f2f8b068a90eab6910
 
   ngOnInit() {
     // 4) Cria o formulário de contatos
     this.contactFormCreate();
-<<<<<<< HEAD
   }
 
   // 5) Cria o formulário de contatos
   contactFormCreate() {
+
+    // 'contactForm' contém o formulário
+    // Um formulário é um 'agrupamento' (group) de campos...
     this.contactForm = this.form.group({
-      date: [''], // Data de envio
+
+      // Data de envio está vazia
+      date: [''],
+
+      // Campo 'Nome' (name)
       name: [
-        // Nome
+        '', // Valor inicial
+        Validators.compose([ // Validação do campo
+          Validators.required, // Obrigatório
+          Validators.minLength(3), // Pelo menos 3 caracteres
+          removeSpaces // Não permite somente espaços
+        ]),
+      ],
+
+      // Campo 'E-mail' (email)
+      email: [
         '',
         Validators.compose([
-          Validators.required, // Obrigatório
-          Validators.minLength(3), // Nomes curtos demais
+          Validators.required,
+          Validators.email, // Valida somente se for um e-mail válido
           removeSpaces
         ]),
       ],
-      email: [
-        // E-mail
-        '',
-        Validators.compose([Validators.required, Validators.email, removeSpaces]),
-      ],
+
+      // Campo 'Assunto' (subject)
       subject: [
-        // Assunto
         '',
-        Validators.compose([Validators.required, Validators.minLength(5), removeSpaces]),
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(5),
+          removeSpaces
+        ]),
       ],
       message: [
         // Mensagem
         '',
-        Validators.compose([Validators.required, Validators.minLength(5), removeSpaces]),
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(5),
+          removeSpaces
+        ]),
       ],
     });
   }
 
-
-
-  //7) processa o envio do formulário
+  // 7) Processa o envio do formulário]
   contactSend() {
 
-    //criar e formartar a data
+    // Cria e formata a data
     this.contactForm.controls.date.setValue(
       this.pipe.transform(Date.now(), 'yyyy-MM-dd HH:mm:ss').trim()
     );
 
-
-    // salva em um novo documento do firebase Firestore
+    // Salva em um novo documento do Firebase Firestore
     this.firestore.collection('contacts').add(this.contactForm.value)
       .then(
         () => {
 
-          //reset do formulário
-          this.contactForm.reset();
-
-          // feedback
-
+          // Feedback
           this.presentAlert();
-
-
-
-          alert('Contato enviado com sucesso!');
         }
       )
       .catch(
+
+        // Exibe erro se não salvar
         (error) => {
-
-          alert('Algo de errado não está certo' + error);
-
+          alert('Erro ao salvar contato.' + error);
         }
-
       );
-
   }
 
-
-  //feedback
+  // Feedback
+  // Exibe feedback
   async presentAlert() {
     const alert = await this.alert.create({
-
       header: 'Oba!',
       message: 'Contato enviado com sucesso!',
       buttons: [{
-        text: 'Beleza!',
+        text: 'Ok',
         handler: () => {
-
+          
+          // Reset do formulário
           this.contactForm.reset();
         }
       }]
     });
 
     await alert.present();
-=======
-  }
-
-  // 5) Cria o formulário de contatos
-  contactFormCreate() {
-    this.contactForm = this.form.group({
-      date: [''], // Data de envio
-      name: [
-        // Nome
-        '',
-        Validators.compose([
-          Validators.required, // Obrigatório
-          Validators.minLength(3), // Nomes curtos demais
-          removeSpaces
-        ]),
-      ],
-      email: [
-        // E-mail
-        '',
-        Validators.compose([Validators.required, Validators.email, removeSpaces]),
-      ],
-      subject: [
-        // Assunto
-        '',
-        Validators.compose([Validators.required, Validators.minLength(5), removeSpaces]),
-      ],
-      message: [
-        // Mensagem
-        '',
-        Validators.compose([Validators.required, Validators.minLength(5), removeSpaces]),
-      ],
-    });
->>>>>>> b7242c2230741c2447c287f2f8b068a90eab6910
   }
 }
