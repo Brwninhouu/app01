@@ -9,7 +9,10 @@ import {
 } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DatePipe } from '@angular/common';
+<<<<<<< HEAD
 import { AlertController } from '@ionic/angular';
+=======
+>>>>>>> b7242c2230741c2447c287f2f8b068a90eab6910
 
 // 6) Não permite somente espaços nos campos
 export function removeSpaces(control: AbstractControl) {
@@ -32,14 +35,20 @@ export class ContactsPage implements OnInit {
   constructor(
     // 2) Injeta dependências
     public form: FormBuilder,
+<<<<<<< HEAD
     public firestore: AngularFirestore,
     public alert: AlertController
 
   ) { }
+=======
+    public firestore: AngularFirestore
+  ) {}
+>>>>>>> b7242c2230741c2447c287f2f8b068a90eab6910
 
   ngOnInit() {
     // 4) Cria o formulário de contatos
     this.contactFormCreate();
+<<<<<<< HEAD
   }
 
   // 5) Cria o formulário de contatos
@@ -129,5 +138,38 @@ export class ContactsPage implements OnInit {
     });
 
     await alert.present();
+=======
+  }
+
+  // 5) Cria o formulário de contatos
+  contactFormCreate() {
+    this.contactForm = this.form.group({
+      date: [''], // Data de envio
+      name: [
+        // Nome
+        '',
+        Validators.compose([
+          Validators.required, // Obrigatório
+          Validators.minLength(3), // Nomes curtos demais
+          removeSpaces
+        ]),
+      ],
+      email: [
+        // E-mail
+        '',
+        Validators.compose([Validators.required, Validators.email, removeSpaces]),
+      ],
+      subject: [
+        // Assunto
+        '',
+        Validators.compose([Validators.required, Validators.minLength(5), removeSpaces]),
+      ],
+      message: [
+        // Mensagem
+        '',
+        Validators.compose([Validators.required, Validators.minLength(5), removeSpaces]),
+      ],
+    });
+>>>>>>> b7242c2230741c2447c287f2f8b068a90eab6910
   }
 }
