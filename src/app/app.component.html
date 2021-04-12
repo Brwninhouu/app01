@@ -4,8 +4,12 @@
       <ion-content>
         <ion-list id="inbox-list">
 
-          <ion-list-header>Fuinhas</ion-list-header>
-          <ion-note>Futucando onde não deve.</ion-note>
+          <div class="ion-text-center">
+            <img src="assets/dota2.png" width="200" height="200">
+          </div>
+
+          <ion-list-header>Dota 2</ion-list-header>
+          <ion-note>Jogar é viver</ion-note>
 
           <ion-menu-toggle auto-hide="false">
             <ion-item routerDirection="root" routerLink="/articles" lines="none" detail="false"
@@ -49,15 +53,15 @@
             <ion-menu-toggle auto-hide="false">
 
               <ion-item routerDirection="root" routerLink="/user/profile" lines="none" detail="false"
-              routerLinkActive="selected">
-              <ion-avatar slot="start">
-                <ion-img src="{{ user.photoURL }}" alt="Ver perfil de {{ user.displayName }}"></ion-img>
-              </ion-avatar>
-              <ion-label>
-                {{ user.displayName }}
-                <div><small>{{ user.email }}</small></div>                
-              </ion-label>
-            </ion-item>
+                routerLinkActive="selected">
+                <ion-avatar slot="start">
+                  <ion-img src="{{ user.photoURL }}" alt="Ver perfil de {{ user.displayName }}"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                  {{ user.displayName }}
+                  <div><small>{{ user.email }}</small></div>
+                </ion-label>
+              </ion-item>
 
             </ion-menu-toggle>
 
@@ -84,8 +88,11 @@
 
       </ion-content>
 
+
+
+
       <div class="ion-text-center ion-padding">
-        <small>&copy; Copyright 2021 André Luferat</small>
+        <small>&copy; Copyright 2021 Bruno Capella</small>
       </div>
 
     </ion-menu>
